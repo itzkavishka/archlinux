@@ -76,9 +76,9 @@ alias pacorphan='orphaned=$(pacman -Qtdq); if [ -n "$orphaned" ]; then sudo pacm
 alias tupdate='trizen -Syu'
 alias tinstall='trizen -S'
 alias pacuninstall='trizen -Rns'
-alias pacsearch='trizen -Ss'
-alias paccache-clean='trizen -Sc'
-alias paccache-clear='trizen -Scc'
+alias tsearch='trizen -Ss'
+alias tcache-clean='trizen -Sc'
+alias tcache-clear='trizen -Scc'
 
 # Power
 alias suspend='systemctl suspend'
