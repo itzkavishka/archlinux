@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
-#Make sure to set this file as an executable using chmod +x 
+
+# Make sure to set this file as executable: chmod +x ~/.config/i3/scripts/blur-lock
+# Required packages: scrot, imagemagick (v7)
+
 PICTURE=/tmp/i3lock.png
 SCREENSHOT="scrot -z $PICTURE"
-
 BLUR="5x4"
 
 $SCREENSHOT
-convert $PICTURE -blur $BLUR $PICTURE
-i3lock -i $PICTURE
+magick $PICTURE -blur $BLUR $PICTURE
+i3lock --nofork -i $PICTURE
 rm $PICTURE
