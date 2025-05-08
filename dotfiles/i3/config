@@ -16,17 +16,13 @@ exec --no-startup-id xmodmap ~/.Xmodmap
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
-
+#font pango:monospace 8
+font pango:JetBrains Mono Nerd Font 8
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-#border indicator on windows:
-new_window pixel 1
-
-# Set inner/outer gaps
-gaps inner 0 
+gaps inner 0
 gaps outer -1
 
 # Start XDG autostart .desktop files using dex. See also
@@ -45,7 +41,7 @@ gaps outer -1
 #exec --no-startup-id nm-applet
 
 # Wallpaper
-exec_always --no-startup-id feh --randomize --bg-fill --slideshow-delay 1 ~/.config/wallpapers/*
+exec_always --no-startup-id feh --randomize --bg-fill --slideshow-delay 1 ~/.config/.wallpapers/*
 
 # Notification
 exec --no-startup-id dunst
@@ -77,14 +73,18 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-bindsym $mod+k  exec rofi -show drun
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-# switch/iterate between workspaces
-bindsym $mod+Tab workspace next
+# change focus
+#bindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
+# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -112,9 +112,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -152,6 +152,10 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+#bindsym F11 workspace next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -205,31 +209,16 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-# Autostart apps as you like
-#exec --no-startup-id sleep 2 && xfce4-terminal
-exec --no-startup-id sleep 7 && brave
-#exec --no-startup-id sleep 3 && thunar
-
-## App shortcuts
-bindsym $mod+b exec --no-startup-id /usr/bin/brave
-#bindsym $mod+n exec --no-startup-id /usr/bin/thunar
-bindsym $mod+u exec --no-startup-id /usr/bin/codium
-# Ensure you have scrot and imagemagick installed and made a dir called ss in Prctures or change the path as you wish
-bindsym Print exec --no-startup-id scrot ~/pictures/ss/%Y-%m-%d-%T-screenshot.png
-
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         status_command i3status
-# }
 bar {
     font pango:JetBrainsMonoNerdFont 10
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
     position bottom
     tray_output primary
-    tray_padding 0	
+    tray_padding 0      
 }
 
 exec --no-startup-id picom -b
