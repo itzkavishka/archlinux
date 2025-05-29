@@ -63,6 +63,16 @@ alias downs='cd ~/Downloads'
 alias vids='cd ~/Videos'
 alias pics='cd ~/Pictures'
 
+# Function to enable conservation mode
+conservation_on() {
+    echo 1 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC*/conservation_mode
+}
+
+# Function to disable conservation mode
+conservation_off() {
+    echo 0 | sudo tee /sys/bus/platform/drivers/ideapad_acpi/VPC*/conservation_mode
+}
+
 # Pacman
 alias pacupdate='sudo pacman -Syu'
 alias pacinstall='sudo pacman -S'
