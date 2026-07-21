@@ -1,5 +1,5 @@
 [font]
-  size=12.0
+  size=16.0
 
   [font.normal]
   family="JetBrains Mono Nerd Font"
@@ -14,7 +14,7 @@
   style="Italic"
 
 [window]
-  opacity = 0.60
+  opacity = 0.95
   decorations="None"
 [cursor]
   style={shape="Block",blinking="Always"}
