@@ -110,3 +110,42 @@ cd ()
 	fi
 }
 
+bb() {
+    local level value
+
+    while true; do
+        read -p "Brightness (1-10): " level
+        if [[ "$level" =~ ^([1-9]|10)$ ]]; then
+            break
+        fi
+        echo "Enter a value between 1 and 10."
+    done
+
+    if [ "$level" -eq 10 ]; then
+        value="1.0"
+    else
+        value="0.$level"
+    fi
+
+    if [[ -n "$WAYLAND_DISPLAY" ]]; then
+        # Wayland: use brightnessctl (hardware backlight, requires brightnessctl)
+        local pct=$(( level * 10 ))
+        if command -v brightnessctl &>/dev/null; then
+            brightnessctl set "${pct}%"
+            echo "brightness -> ${pct}%"
+        else
+            echo "brightnessctl not found. Install it: sudo apt install brightnessctl"
+            return 1
+        fi
+    else
+        # X11: use xrandr software brightness
+        local display
+        display=$(xrandr --query | awk '/ connected/{print $1; exit}')
+        if [ -z "$display" ]; then
+            echo "No display detected."
+            return 1
+        fi
+        xrandr --output "$display" --brightness "$value" --gamma 1:1:1
+        echo "$display -> brightness $level/10 ($value)"
+    fi
+}
