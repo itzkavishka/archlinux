@@ -23,7 +23,7 @@ font pango:JetBrains Mono Nerd Font 8
 #font pango:DejaVu Sans Mono 8
 
 gaps inner 0
-gaps outer -1
+gaps outer 0
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -41,7 +41,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/blur
 #exec --no-startup-id nm-applet
 
 # Wallpaper
-exec_always --no-startup-id feh --randomize --bg-fill --slideshow-delay 1 ~/.config/.wallpapers/*
+exec_always --no-startup-id feh --randomize --bg-fill --slideshow-delay 60 ~/.config/.wallpapers/*
 
 # Notification
 exec --no-startup-id dunst
@@ -73,7 +73,7 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 #bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
