@@ -1,26 +1,16 @@
 #!/bin/bash
 
-# Get active network interface
 iface=$(ip route | awk '/default/ {print $5}' | head -n1)
 
 if [[ -z "$iface" ]]; then
-    echo "No network"
+    echo "Offline"
     exit 0
 fi
 
-# Get IP address
-ip=$(ip -4 addr show "$iface" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
-
-# Get Wi-Fi SSID (if applicable)
-wifi=$(iwgetid -r)
+wifi=$(iwgetid -r 2>/dev/null)
 
 if [[ -n "$wifi" ]]; then
-    quality=$(grep "$iface" /proc/net/wireless | awk '{ print int($3 * 100 / 70) "%"}')
-    echo "$wifi ($quality $ip)"
+    echo "  Connected"
 else
-    if [[ -n "$ip" ]]; then
-        echo "ETH ($ip)"
-    else
-        echo "Disconnected"
-    fi
+    echo "󰈀 Connected"
 fi
