@@ -100,6 +100,12 @@ alias eumount='sudo umount /mnt/ && echo "Unmounted successfully." || echo "Fail
 # Edit the .bashrc file
 alias ebrc='vim ~/.bashrc'
 
+# proxychains
+alias pxx="proxychains"
+
+# git through proxychains
+alias git="proxychains -q git"
+
 # Automatically do an ls after each cd, z, or zoxide
 cd ()
 {
