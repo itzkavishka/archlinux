@@ -31,3 +31,8 @@
 	- clone the repo and cd in to the file
 	
 	- Run ```makepkg -si``` command without sudo.
+
+3. GNU Stow Usage
+	
+	- When stowing packages from the `dotfiles` directory, use the `-t ~` flag to ensure symlinks are created in your home directory (instead of the repository root).
+	- Example: `cd dotfiles && stow -t ~ <package_name>`
