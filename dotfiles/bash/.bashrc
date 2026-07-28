@@ -104,7 +104,7 @@ alias ebrc='vim ~/.bashrc'
 alias pxx="proxychains"
 
 # git through proxychains
-alias git="proxychains -q git"
+alias git="proxychains -q git -c http.proxy= -c https.proxy= "
 
 # Automatically do an ls after each cd, z, or zoxide
 cd ()
