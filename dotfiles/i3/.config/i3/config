@@ -229,3 +229,6 @@ exec --no-startup-id picom -b
 exec --no-startup-id ~/.startup.sh
 
 exec --no-startup-id numlockx on
+
+exec --no-startup-id brave
+
