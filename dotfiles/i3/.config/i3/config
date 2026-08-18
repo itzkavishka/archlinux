@@ -225,3 +225,7 @@ bar {
 }
 
 exec --no-startup-id picom -b
+
+# Set initial display brightness (0.6)
+exec --no-startup-id bash -c 'display=$(xrandr --query | awk "/ connected/{print \$1; exit}"); [ -n "$display" ] && xrandr --output "$display" --brightness 0.6 --gamma 1:1:1'
+
