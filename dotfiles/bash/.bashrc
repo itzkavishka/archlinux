@@ -119,13 +119,24 @@ cd ()
 bb() {
     local level value
 
-    while true; do
-        read -p "Brightness (1-10): " level
-        if [[ "$level" =~ ^([1-9]|10)$ ]]; then
-            break
+    if [[ -n "$1" ]]; then
+        # Use the argument if provided: bb 4
+        level="$1"
+        if [[ ! "$level" =~ ^([1-9]|10)$ ]]; then
+            echo "Error: '$level' is not a value between 1 and 10."
+            echo "Usage: bb [1-10]"
+            return 1
         fi
-        echo "Enter a value between 1 and 10."
-    done
+    else
+        # No argument: prompt interactively
+        while true; do
+            read -p "Brightness (1-10): " level
+            if [[ "$level" =~ ^([1-9]|10)$ ]]; then
+                break
+            fi
+            echo "Enter a value between 1 and 10."
+        done
+    fi
 
     if [ "$level" -eq 10 ]; then
         value="1.0"
@@ -155,3 +166,8 @@ bb() {
         echo "$display -> brightness $level/10 ($value)"
     fi
 }
+export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/home/xs/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
