@@ -1,15 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
 ## WIKI
 1. GTK Theme installation
 	
