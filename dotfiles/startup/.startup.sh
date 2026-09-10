@@ -21,4 +21,6 @@ sleep 2
 display=$(xrandr --query | awk '/ connected/{print $1; exit}')
 if [ -n "$display" ]; then
     xrandr --output "$display" --brightness 0.6 --gamma 1:1:1 2>/dev/null
+    echo 6 > "/tmp/.brightness_level_${UID:-$(id -u)}" 2>/dev/null
+    pkill -RTMIN+11 i3blocks 2>/dev/null
 fi

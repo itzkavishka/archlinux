@@ -165,6 +165,9 @@ bb() {
         xrandr --output "$display" --brightness "$value" --gamma 1:1:1
         echo "$display -> brightness $level/10 ($value)"
     fi
+
+    echo "$level" > "/tmp/.brightness_level_${UID:-$(id -u)}" 2>/dev/null
+    pkill -RTMIN+11 i3blocks 2>/dev/null
 }
 export PATH="$HOME/.local/bin:$PATH"
 

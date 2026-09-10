@@ -59,8 +59,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Brightness keys
-bindsym XF86MonBrightnessUp exec brightnessctl s +1%
-bindsym XF86MonBrightnessDown exec brightnessctl s 1%-
+bindsym XF86MonBrightnessUp exec --no-startup-id ~/.config/i3/i3blocks/brightness.sh up && pkill -RTMIN+11 i3blocks
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/i3blocks/brightness.sh down && pkill -RTMIN+11 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -230,6 +230,4 @@ exec --no-startup-id picom -b
 
 exec --no-startup-id ~/.startup.sh
 
-exec --no-startup-id firefox
-
-
+exec --no-startup-id brave
